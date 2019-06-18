@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    tools {nodejs "NodeJs 11.14.0"}
+	environment {
+		SCRIPT_INSTALL = "npm install"
+		SCRIPT_BUILD = "npm build"
+    }
+stages {
+        stage('Prepare resource') {
+            steps {
+                script {
+					echo "Prepare resource START"
+					echo "get from git repository"
+					echo " Prepare resource END"
+                }
+            }
+        }
+		stage('Install library') { steps { script { sh SCRIPT_INSTALL } } }
+        stage('Build') { steps { script { sh SCRIPT_BUILD } } }
+    }
+    post { always { cleanWs() } }
+}
