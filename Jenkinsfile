@@ -1,22 +1,10 @@
 pipeline {
-    agent any
-stages {
-        stage('Check version') {
+    agent { docker { image 'node:10.16.0' } }
+    stages {
+        stage('build') {
             steps {
                 sh 'npm --version'
             }
         }
     }
 }
-
-
-// pipeline {
-//     agent { docker { image 'node:6.3' } }
-//     stages {
-//         stage('build') {
-//             steps {
-//                 sh 'npm --version'
-//             }
-//         }
-//     }
-// }
