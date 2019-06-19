@@ -1,6 +1,5 @@
 pipeline {
-    agent any
-    tools {nodejs "NodeJs 10.16.0"}
+    agent { docker { image 'node:10.16.0' } }
 stages {
         stage('Check version') {
             steps {
