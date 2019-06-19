@@ -1,22 +1,25 @@
 pipeline {
     agent any
     tools {nodejs "NodeJs 10.16.0"}
-	environment {
-		SCRIPT_INSTALL = "npm install"
-		SCRIPT_BUILD = "npm build"
-    }
 stages {
-        stage('Prepare resource') {
+        stages('Prepare resource') {
             steps {
                 script {
-					echo "Prepare resource START"
-					echo "get from git repository"
-					echo " Prepare resource END"
+					sh 'npm --version'
                 }
             }
         }
-		stage('Install library') { steps { script { sh SCRIPT_INSTALL } } }
-        stage('Build') { steps { script { sh SCRIPT_BUILD } } }
     }
-    post { always { cleanWs() } }
 }
+
+
+// pipeline {
+//     agent { docker { image 'node:6.3' } }
+//     stages {
+//         stage('build') {
+//             steps {
+//                 sh 'npm --version'
+//             }
+//         }
+//     }
+// }
