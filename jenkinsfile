@@ -1,12 +1,9 @@
 pipeline {
     agent any
-    tools {nodejs "NodeJs 10.16.0"}
 stages {
-        stages('Prepare resource') {
+        stage('Test') {
             steps {
-                script {
-					sh 'npm --version'
-                }
+                sh 'npm -v'
             }
         }
     }
