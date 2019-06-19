@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tools {nodejs "NodeJs 11.14.0"}
+    tools {nodejs "NodeJs 10.16.0"}
 	environment {
 		SCRIPT_INSTALL = "npm install"
 		SCRIPT_BUILD = "npm build"
