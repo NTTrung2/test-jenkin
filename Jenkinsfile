@@ -1,5 +1,10 @@
 pipeline {
     agent any
+  
+    parameters {
+		choice(choices: ["DEV","PRODUCTION"], description: 'What environment?', name: 'ENVIRONMENT')
+    }
+
     stages {
         stage("Check version npm") {
             steps {
@@ -19,6 +24,11 @@ pipeline {
         stage("build") {
             steps {
                 bat "npm run build"
+            }
+        }
+        stage("build") {
+            steps {
+                bat "${params.ENVIRONMENT}""
             }
         }
     }
