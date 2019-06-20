@@ -1,42 +1,18 @@
 pipeline {
-  agent any
-  parameters {
-    choice(choices: ["DEV", "PRODUCTION"], description: 'What environment?', name: 'ENVIRONMENT')
-  }
-  stages {
-    stage("condition dev") {
-      when {
-        allOf {
-          expression { params.ENVIRONMENT == ~ /DEV/ }
-        }
-      }
-      agent any
-      stages {
-        stage("print environment") {
-          steps {
-            script { 
-              bat "echo ${params.ENVIRONMENT}" 
+    agent any
+    stages {
+        stage('Example Build') {
+            steps {
+                echo 'Hello World'
             }
-          }
         }
-      }
-    }
-    stage("condition prod") {
-      when {
-        allOf {
-          expression { params.ENVIRONMENT == ~ /PRODUCTION/ }
-        }
-      }
-      agent any
-      stages {
-        stage("print environment") {
-          steps {
-            script { 
-              bat "echo ${params.ENVIRONMENT}" 
+        stage('Example Deploy') {
+            when {
+                branch 'production'
             }
-          }
+            steps {
+                echo 'Deploying'
+            }
         }
-      }
     }
-  }
 }
