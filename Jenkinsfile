@@ -6,6 +6,15 @@ pipeline {
     }
 
     stages {
+      
+      stage("parameters") {
+            steps {
+                script {
+                    sh "echo ${params.ENVIRONMENT}"
+                }
+            }
+        }
+
         stage("Check version npm") {
             steps {
                 bat "npm -v"
@@ -24,11 +33,6 @@ pipeline {
         stage("build") {
             steps {
                 bat "npm run build"
-            }
-        }
-        stage("build") {
-            steps {
-                bat "${params.ENVIRONMENT}""
             }
         }
     }
