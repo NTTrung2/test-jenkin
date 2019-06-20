@@ -1,14 +1,9 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:10.16.0' 
-            args '-p 3000:3000' 
-        }
-    }
+    agent any
     stages {
-        stage('Build') { 
+        stage('build') {
             steps {
-                sh 'node -v' 
+                sh 'npm --version'
             }
         }
     }
