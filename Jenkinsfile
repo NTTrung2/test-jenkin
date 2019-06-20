@@ -1,15 +1,16 @@
 pipeline {
     agent any
-    parameters {
-		choice(choices: ["DEV","TEST","PRODUCTION"], description: 'What environment?', name: 'ENVIRONMENT')
+	   environment {
+		TEST01 = "echo test01"
+		TEST02 = "java -version"
     }
     stages {
-        stage("parameters") {
+        stage("environment") {
             steps {
-                script {
-                    sh "echo ${params.ENVIRONMENT}"
-                }
+     		sh TEST01
+			sh TEST02
             }
         }
     }
 }
+
