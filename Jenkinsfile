@@ -7,13 +7,21 @@ pipeline {
 
     stages {
       
-      stage("parameters") {
-            steps {
-                script {
-                    bat "echo ${params.ENVIRONMENT}"
-                }
+          when {
+    			allOf {
+    				expression { params.ENVIRONMENT ==~ /DEV/ }
+    			}
+    		}
+    		agent any
+    	    stages {
+    	        stage("print environment") {
+                    steps {
+                        script { bat "echo ${params.ENVIRONMENT}" }
+                    }
+    	        }
             }
-        }
+	    }
+
 
         stage("Check version npm") {
             steps {
