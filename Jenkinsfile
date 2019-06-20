@@ -1,13 +1,11 @@
 pipeline {
-  agent any
- 
-  tools {nodejs "nodejs"}
- 
-  stages {
-    stage('Example') {
-      steps {
-        sh 'npm -v'
-      }
+    agent any
+    tools {nodejs "nodejs"}
+    stages {
+        stage("nodejs") {
+            steps {
+                sh "node -v"
+            }
+        }
     }
-  }
 }
