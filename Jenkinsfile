@@ -2,13 +2,13 @@ pipeline {
     agent any
 	   environment {
 		TEST01 = "echo test01"
-		TEST02 = "java -version"
+		TEST03 = "java -version"
     }
     stages {
         stage("environment") {
             steps {
      		sh TEST01
-			sh TEST02
+			sh TEST03
             }
         }
     }
