@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("Install") {
             steps {
-                sh 'npm install'
+                bat label: 'install', script: 'npm -v'
             }
         }
     }
