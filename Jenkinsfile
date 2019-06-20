@@ -5,6 +5,9 @@ pipeline {
             steps {
                 echo 'Hello World'
             }
+            steps{
+              echo {$branch}
+            }
         }
         stage('Example Deploy') {
             when {
