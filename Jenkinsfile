@@ -1,15 +1,13 @@
 pipeline {
-    agent any
-	   environment {
-		TEST01 = "echo test01"
-		TEST02 = "java -version"
+  agent any
+ 
+  tools {nodejs "nodejs"}
+ 
+  stages {
+    stage('Example') {
+      steps {
+        sh 'node -v'
+      }
     }
-    stages {
-        stage("environment") {
-            steps {
-     		sh TEST01
-			sh TEST02
-            }
-        }
-    }
+  }
 }
