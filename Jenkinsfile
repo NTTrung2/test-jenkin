@@ -12,9 +12,14 @@ pipeline {
                 bat "node -v"
             }
         }
-        stage("Check version angular") {
+        stage("Install lib") {
             steps {
-                bat "ng version"
+                bat "npm install"
+            }
+        }
+        stage("build") {
+            steps {
+                bat "npm run build"
             }
         }
     }
