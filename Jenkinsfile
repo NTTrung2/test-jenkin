@@ -1,20 +1,15 @@
 pipeline {
-    agent none
+    agent any
+    parameters {
+		choice(choices: ["DEV","TEST","PRODUCTION"], description: 'What environment?', name: 'ENVIRONMENT')
+    }
     stages {
-        stage('01_hello_world') {
+        stage("parameters") {
             steps {
-			echo '01_hello_world'
+                script {
+                    sh "echo ${params.ENVIRONMENT}"
+                }
             }
         }
-        stage('02_hello_world') {
-            steps {
-			echo '02_hello_world'
-            }
-        }
-		stage('03_hello_world') {
-        	steps {
-        		echo '03_hello_world'
-        	}
-        }
-	}
+    }
 }
