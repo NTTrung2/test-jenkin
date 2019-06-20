@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("nodejs") {
             steps {
-                sh "node -v"
+                "node -v"
             }
         }
     }
