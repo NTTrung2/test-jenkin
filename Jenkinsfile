@@ -10,7 +10,7 @@ pipeline {
       stage("parameters") {
             steps {
                 script {
-                    sh "echo ${params.ENVIRONMENT}"
+                    bat "echo ${params.ENVIRONMENT}"
                 }
             }
         }
