@@ -6,16 +6,19 @@ pipeline {
                 echo 'Hello World'
             }
         }
-        stage('Example Deploy') {
-            when {
-                expression { BRANCH_NAME ==~ /(production|staging)/ }
-                anyOf {
-                    environment name: 'DEPLOY_TO', value: 'production'
-                    environment name: 'DEPLOY_TO', value: 'staging'
-                }
-            }
+        stage('Check version') {
             steps {
-                echo 'Deploying'
+                bat 'npm -v'
+            }
+        }
+        stage('Install Library') {
+            steps {
+                bat 'npm install'
+            }
+        }
+        stage('Build source') {
+            steps {
+                bat 'npm run build'
             }
         }
     }
